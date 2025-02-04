@@ -10,7 +10,7 @@ echo'<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Calendrier des évènement de laManuEcology</title>
+    <title>Calendrier des évènements de laManuEcology</title>
 </head>
 <body>';
     // Si pas de données soumises on affiche le formulaire de choix du calendrier
@@ -49,10 +49,10 @@ echo'<!DOCTYPE html>
         $chosenMonth = $_POST['month'];
         $chosenYear = $_POST['year'];
         $year = date("Y");
+        $today = date("Y-m-d");
 
         // on récupère le contenu du fichier JSON des évènements
         $json = file_get_contents('./assets/json/events.json');
-
         $events = json_decode($json, true)['evenements'];
 
         for ($i = (int)($year) - 5; $i < (int)($year) + 6; $i++){
@@ -110,11 +110,15 @@ echo'<!DOCTYPE html>
                             // On vérifie si il y a un évènement pour celà on remet au format "YYYY-MM-DD"
                             $mon = $j < 10 ? '0'.$j : $j;
                             $day = $tmp < 10 ? '0'.$tmp : $tmp;
+
+                            // On ajoute une classe si c'est aujourd'hui
+                            $class = $today === (string)($i).'-'.(string)($mon).'-'.(string)($day) ? ' class="today"' : '';
+
                             foreach ($events as $event) {
                                 if ($event['date'] === (string)($i).'-'.(string)($mon).'-'.(string)($day)){
 
                                     // On ajoute un lien vers la page détaillée de l'évènement
-                                    $link = '<a href="details.php?date='.$event['date'].'">'.$tmp.'</a>';
+                                    $link = '<a href="event.php?date='.$event['date'].'">'.$tmp.'</a>';
 
                                     // on sort de la boucle si on a trouvé un évènement pour ce jour puisqu'il y en a qu'un dans la même journée
                                     break;
@@ -122,7 +126,7 @@ echo'<!DOCTYPE html>
                                     $link = $tmp;
                                 }
                             }
-                            echo '<td>'.$link.'</td>';
+                            echo '<td'.$class.'>'.$link.'</td>';
                         } else{
 
                             // on affiche à nouveau des cases vides après la fin du mois
@@ -139,7 +143,7 @@ echo'<!DOCTYPE html>
             }
         }
         // On récupère les données
-        echo '<p>Légende: En rouge férié, en vert évènement.</p>';
+        echo '<p>Légende: En rouge férié, en vert évènement, fond en bleu aujourd\'hui.</p>';
      } 
 echo '
 <script src="./assets/js/publicHoliday.js"></script>
