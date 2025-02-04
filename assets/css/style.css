@@ -143,6 +143,16 @@ a {
     right: 20px;
 }
 
+@media screen and (min-width:600px){
+    #leftArrow{
+        left: 20%;
+    }
+    
+    #rightArrow{
+        right: 20%;
+    }
+}
+
 @media screen and (min-width:1120px) {
     h1{
         font-size:3em;
