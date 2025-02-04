@@ -12,7 +12,7 @@ h2{
     color:#33058d;
     text-align:center;
     text-shadow: 2px 2px 4px #ccc;
-    font-size:2em;
+    font-size:1.2em;
     margin: 0 0 20px 0;
 }
 
@@ -24,6 +24,7 @@ p{
     line-height:1.5;
     margin-bottom:20px;
     padding: 0 20px;
+    text-align: center;
 }
 
 form{
@@ -66,17 +67,15 @@ input[type="submit"]{
     border:none;
     border-radius:5px;
     cursor:pointer;
-    font-size:0.8em;
     box-shadow: 3px 3px 3px #a4a4a4;
     margin-top:10px;
     letter-spacing:1px;
     text-shadow: 2px 2px 4px #ccc;
-    word-wrap: break-word;
 }
 
 table{
     border-collapse: collapse;
-    margin-top:20px;
+    margin: 20px auto auto auto;
     font-size:0.9em;
     text-align:left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -126,7 +125,7 @@ a {
 #rightArrow{
     position:absolute;
     font-size: 2em;
-    top: 50vh;
+    top: 10px;
 }
 
 #leftArrow:hover,
@@ -144,19 +143,22 @@ a {
     right: 20px;
 }
 
-@media screen and (min-width:441px) {
+@media screen and (min-width:1120px) {
     h1{
         font-size:3em;
+    }
+
+    h2{
+        font-size:2em;
     }
 
     p{
         font-size:1.2em;
         line-height:1.8;
-        text-align:center
     }
 
     form{
-        width:40%;
+        max-width:800px;
     }
 
     input[type="submit"]{
