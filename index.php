@@ -9,6 +9,9 @@ echo'<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Calendrier des évènements de laManuEcology</title>
 </head>
@@ -45,7 +48,7 @@ echo'<!DOCTYPE html>
             </select>
             <input type="submit" value="Afficher le calendrier">
         </form>';
-    } else {// On affiche le calendrier du mois choisi
+    } else {// On affichera le calendrier du mois choisi
         $chosenMonth = $_POST['month'];
         $chosenYear = $_POST['year'];
         $year = date("Y");
@@ -54,9 +57,12 @@ echo'<!DOCTYPE html>
         // on récupère le contenu du fichier JSON des évènements
         $json = file_get_contents('./assets/json/events.json');
         $events = json_decode($json, true)['evenements'];
+        
+        // flèche gauche pour la navigation vers le mois précédent
+        echo '<i class="fas fa-chevron-left" id="leftArrow"></i>';
 
-        for ($i = (int)($year) - 5; $i < (int)($year) + 6; $i++){
-            for ($j = 1; $j <= 12; $j++){
+        for ($i = (int)($year) - 5; $i < (int)($year) + 6; $i++){ // boucle sur les années précédentes et suivantes
+            for ($j = 1; $j <= 12; $j++){ // boucle sur les mois
                 // On calcule le nombre de jours dans le mois
                 $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $j, $i);
 
@@ -107,7 +113,7 @@ echo'<!DOCTYPE html>
                         $tmp = $k - $firstDay + 1;
                         if ($tmp <= $daysInMonth){
 
-                            // On vérifie si il y a un évènement pour celà on remet au format "YYYY-MM-DD"
+                            // On vérifie s'il y a un évènement pour celà on comparera au format "YYYY-MM-DD"
                             $mon = $j < 10 ? '0'.$j : $j;
                             $day = $tmp < 10 ? '0'.$tmp : $tmp;
 
@@ -115,6 +121,7 @@ echo'<!DOCTYPE html>
                             $class = $today === (string)($i).'-'.(string)($mon).'-'.(string)($day) ? ' class="today"' : '';
 
                             foreach ($events as $event) {
+                                // On vérifie s'il y a un évènement ce jour
                                 if ($event['date'] === (string)($i).'-'.(string)($mon).'-'.(string)($day)){
 
                                     // On ajoute un lien vers la page détaillée de l'évènement
@@ -123,6 +130,7 @@ echo'<!DOCTYPE html>
                                     // on sort de la boucle si on a trouvé un évènement pour ce jour puisqu'il y en a qu'un dans la même journée
                                     break;
                                 } else {
+                                    // pas de lien si aucun évènement pour ce jour juste le numéro du jour
                                     $link = $tmp;
                                 }
                             }
@@ -133,7 +141,7 @@ echo'<!DOCTYPE html>
                             echo '<td></td>';
                         }
 
-                        // on ferme la ligne si on arrive si on a atteint la fin de la semaine
+                        // on ferme la ligne si on a atteint la fin de la semaine
                         if ($k % 7 == 0){
                             echo '</tr>';
                         }
@@ -142,11 +150,12 @@ echo'<!DOCTYPE html>
                 echo '</table></div>';
             }
         }
-        // On récupère les données
-        echo '<p>Légende: En rouge férié, en vert évènement, fond en bleu aujourd\'hui.</p>';
-     } 
+        echo '<i class="fas fa-chevron-right" id="rightArrow"></i>
+            <p>Légende: En rouge férié, en vert évènement, fond en bleu aujourd\'hui.</p>
+            <script src="./assets/js/publicHoliday.js"></script>
+            <script src="./assets/js/navigate.js"></script>';
+     }
 echo '
-<script src="./assets/js/publicHoliday.js"></script>
 </body>
 </html>';
 ?>

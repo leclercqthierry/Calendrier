@@ -11,7 +11,7 @@ tables.forEach((table) => {
     monthTds.push(tds);
 });
 
-// Si pas de formulaire alors on c'est qu'on a afficher le calendrier
+// Si pas de formulaire alors on c'est qu'on a affiché le calendrier
 if (form===null) {
     // On récupère le titre du calendrier
     const h2 = document.querySelector('h2');
@@ -41,12 +41,12 @@ if (form===null) {
     let publicHolidays = [];
 
     // On récupère l'année en cours
-    let currentDate = new Date().getFullYear();
+    let currentYear = new Date().getFullYear();
 
     // On veut les 5 années précédentes et les 5 suivantes
     yearsWanted = [];
     for (let i = -5; i <= 5; i++) {
-        yearsWanted.push(currentDate + i);
+        yearsWanted.push(currentYear + i);
     }
     
     // On récupère les jours fériés en passant par l'API du gouvernement (elle fournie les fériés des 20 années précédentes et les 5 suivantes)

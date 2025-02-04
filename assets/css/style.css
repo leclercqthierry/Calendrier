@@ -93,6 +93,7 @@ td{
     font-size:larger;
 }
 
+/* week-end */
 td:nth-child(6),
 td:last-child{
     background-color: #c4c1c1;
@@ -103,10 +104,12 @@ a {
     color: green;
 }
 
+/* férié */
 .publicHoliday{
     color:red;
 }
 
+/* aujourd'hui */
 .today{
     background-color: rgb(74, 119, 203);
 }
@@ -117,6 +120,28 @@ a {
 
 .hide{
     display:none;
+}
+
+#leftArrow,
+#rightArrow{
+    position:absolute;
+    font-size: 2em;
+    top: 50vh;
+}
+
+#leftArrow:hover,
+#rightArrow:hover{
+    color: #5d5b5b;
+    cursor: pointer;
+    transition: ease-in-out 0.3s color;
+}
+
+#leftArrow{
+    left: 20px;
+}
+
+#rightArrow{
+    right: 20px;
 }
 
 @media screen and (min-width:441px) {
@@ -159,4 +184,10 @@ a {
         padding:15px;
         font-size: 2em;
     }
+
+    /* on ne prend que les td ayant pour enfant a (survol) */
+    td:has(a):hover{
+        cursor: pointer;
+        border: 2px solid #4706c8;
+       }
 }
