@@ -38,6 +38,11 @@ p{
     margin-bottom:20px;
 }
 
+/* on masque le dernier hr si plusieurs events */
+hr:last-child{
+    display:none;
+}
+
 @media screen and (min-width:441px){
     body{
         display: flex;

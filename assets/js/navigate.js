@@ -13,7 +13,6 @@ let currentH2 = document.querySelector('div.show h2');
 
 // Si le h2 affiché est celui du tout premier mois disponible à l'affichage initial du calendrier on n'affiche pas la flèche gauche sinon on l'affiche
 leftArrow.style.display = (currentH2.textContent === `Calendrier de Janvier ${currentYear-5}`) ? 'none' : 'block';
-console.log(leftArrow.style.display);
 
 // Si le h2 affiché est celui du tout dernier mois disponible à l'affichage initial du calendrier on n'affiche pas la flèche gauche sinon on l'affiche
 rightArrow.style.display = (currentH2.textContent === `Calendrier de Décembre ${currentYear+5}`)? 'none' : 'block';
@@ -45,11 +44,13 @@ function showNextMonth(){
 
     // On récupère le nouveau h2 affiché
     currentH2 = document.querySelector('div.show h2');
+
+    // on met à jour l'affichage des flèches (et ainsi on ne cherchera jamais un current+1 si on était déjà sur le dernier calendrier vu qu'on auras fait disparaitre la flèche de droite)
     rightArrow.style.display = (currentH2.textContent === `Calendrier de Décembre ${currentYear+5}`)? 'none' : 'block';
+
+    // Permet de faire réapparaitre la flèche de gauche si on était sur le premier calendrier avant
     leftArrow.style.display = 'block';
 }
-
-rightArrow.addEventListener('click',showNextMonth);
 
 // la fonction montre le mois précédent
 function showPrevMonth(){
@@ -73,3 +74,4 @@ function showPrevMonth(){
 }
 
 leftArrow.addEventListener('click',showPrevMonth);
+rightArrow.addEventListener('click',showNextMonth);

@@ -16,11 +16,10 @@
         $date = htmlspecialchars($_GET['date']);
 
         $eventDetails = [];
-        // on cherche si l'évènement existe dans la liste des évènements
+        // on cherche si les évènement(s) existent dans la liste des évènements
         foreach ($events as $event){
             if ($event['date'] === $date){
-                $eventDetails = $event;
-                break;
+                array_push($eventDetails, $event);
             }
         }
 
@@ -35,11 +34,17 @@
         </head>
         <body>
         <div class="container">
-            <h1>'.$eventDetails['titre'].'</h1>
-            <p><span>Date:</span> '.date('d/m/Y', strtotime($eventDetails['date'])).'</p>
-            <p><span>Ville:</span> '.$eventDetails['ville'].'</p>
-            <p><span>latitude:</span> '.$eventDetails['latitude'].' <span>longitude:</span> '.$eventDetails['longitude'].'</p>
-            <p><span>Description:</span> '.$eventDetails['description'].'</p>
+            <h1>Evènement(s) du '.date('d/m/Y', strtotime($date)).'</h1>';
+            foreach ($eventDetails as $event){
+                echo'<h2>'.$event['titre'].'</h2>
+                <p><span>Date:</span> '.date('d/m/Y', strtotime($event['date'])).'</p>
+                <p><span>Ville:</span> '.$event['ville'].'</p>
+                <p><span>latitude:</span> '.$event['latitude'].' <span>longitude:</span> '.$event['longitude'].'</p>
+                <p><span>Description:</span> '.$event['description'].'</p>';
+                $hr = count($eventDetails) > 1? '<hr>' : '';
+                echo $hr;
+            }
+            echo'
         </div>
         </body>
         </html>';

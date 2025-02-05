@@ -11,31 +11,8 @@ tables.forEach((table) => {
     monthTds.push(tds);
 });
 
-// Si pas de formulaire alors on c'est qu'on a affiché le calendrier
-if (form===null) {
-    // On récupère le titre du calendrier
-    const h2 = document.querySelector('h2');
-
-    // On en récupère le mois et l'année
-    let month = h2.textContent.split(' ')[2];
-    let year = h2.textContent.split(' ')[3];
-
-    switch (month) {
-        case 'Janvier': monthNumber = '01'; break;
-        case 'Février': monthNumber = '02'; break;
-        case 'Mars': monthNumber = '03'; break;
-        case 'Avril': monthNumber = '04'; break;
-        case 'Mai': monthNumber = '05'; break;
-        case 'Juin': monthNumber = '06'; break;
-        case 'Juillet': monthNumber = '07'; break;
-        case 'Aout': monthNumber = '08'; break;
-        case 'Septembre': monthNumber = '09'; break;
-        case 'Octobre': monthNumber = '10'; break;
-        case 'Novembre': monthNumber = '11'; break;
-        case 'Décembre': monthNumber = '12';
-    }
-
-    let word = year+"-"+monthNumber;
+// Si pas de formulaire alors on c'est qu'on a affiché le calendrier (données soumises)
+if (form === null) {
 
     // On initialise un tableau vide pour stocker les jours fériés
     let publicHolidays = [];
