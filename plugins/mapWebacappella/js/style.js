@@ -1,17 +1,12 @@
 // Carte Open Street Map Pour WebAcappella
 // Copyright 2018 : Tonton du Web
 
-span = document.querySelector('h1+span');
-index = span.textContent;
-
-var lat = latArr[index];
-var lon = longArr[index];
 var macarte = null;
 
-function initMap(lat, lon) {
+function initMap(latArr, longArr) {
 	var iconBase = 'plugins/mapWebacappella/markers/';
 
-	macarte = L.map('map').setView([lat, lon], 8);
+	macarte = L.map('map').setView([latArr[0], longArr[0]], 7);
 	macarte.scrollWheelZoom.disable();
 
 
@@ -23,11 +18,14 @@ function initMap(lat, lon) {
 	}).addTo(macarte);
 		var myIcon = L.icon({
 			iconUrl: iconBase + "red-flat-marker.png",
-			iconSize: [38, 58],
+			iconSize: [15, 20],
 		});
-		var marker = L.marker([lat, lon],{ icon: myIcon }).addTo(macarte)
-	span.remove();
+
+
+		for (let i = 0; i < latArr.length; i++) {
+			L.marker([latArr[i], longArr[i]],{ icon: myIcon }).addTo(macarte);
+		}
 }
 window.onload = function(){
-	initMap(lat, lon);
+	initMap(latArr, longArr);
 };

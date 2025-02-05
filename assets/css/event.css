@@ -48,7 +48,7 @@ hr:last-child{
         display: flex;
         justify-content: center;
         align-items: center;
-        height:100vh;
+        min-height:100vh;
     }
 
     h1{
@@ -62,6 +62,6 @@ hr:last-child{
 
    .container{
     width:80%;
-    margin:0 auto;
+    margin:50px auto;
    }
 }
