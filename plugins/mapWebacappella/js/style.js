@@ -3,10 +3,20 @@
 
 var macarte = null;
 
-function initMap(latArr, longArr) {
-	var iconBase = 'plugins/mapWebacappella/markers/';
+function average(array) {
+	array.forEach(element => {
+		result = array.reduce((a, b) => a + b, 0) / array.length;
+	});
+	return result;
+}
 
-	macarte = L.map('map').setView([latArr[0], longArr[0]], 7);
+function initMap(latArr, longArr) {
+	//var iconBase = 'plugins/mapWebacappella/markers/';
+	var iconBase = './assets/img/';
+ 
+
+	// macarte = L.map('map').setView([latArr[0], longArr[0]], 7);
+	macarte = L.map('map').setView([average(latArr), average(longArr)], 5);
 	macarte.scrollWheelZoom.disable();
 
 
