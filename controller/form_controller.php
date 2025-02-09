@@ -28,7 +28,8 @@ function form(){
         // Récupération des données du formulaire
         $chosenMonth = htmlspecialchars($_POST['month']);
         $chosenYear = htmlspecialchars($_POST['year']);
-        $year = date("Y");
+
+        $currentYear = date("Y");
         $today = date("Y-m-d");
         $monthFr = [null,'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 

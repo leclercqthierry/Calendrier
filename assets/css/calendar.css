@@ -69,7 +69,7 @@ a {
 
 /* aujourd'hui */
 .today{
-    background-color: rgb(74, 119, 203);
+    background-color: rgb(74, 119, 203) !important;
 }
 
 .show{

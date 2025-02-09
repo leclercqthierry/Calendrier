@@ -12,7 +12,7 @@
 <body>
     <!-- flèche gauche pour la navigation vers le mois précédent -->
     <i class="fas fa-chevron-left" id="leftArrow"></i>
-    <?php include_once __DIR__."./../template/calendar.php" ?>
+    <?php echo createCalendar($currentYear, $chosenMonth, $chosenYear, $today, $monthFr, $events) ?>
     <i class="fas fa-chevron-right" id="rightArrow"></i>
     <p>Légende: En rouge férié, en vert évènement, fond en bleu aujourd'hui.</p>
     <script src="./assets/js/publicHoliday.js"></script>
